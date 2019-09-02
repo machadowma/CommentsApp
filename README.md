@@ -257,7 +257,7 @@ public class CustomListAdapter extends BaseAdapter {
 }
 ```
 
-## 5. Instanciando o adaptador a associando à ListView
+## 5. Instanciando o adaptador e associando à ListView
 Vamos juntar todos eles e conectá-lo à Activity. O trecho de código a seguir descreve a classe  MainActivity.java, onde inicializamos o Adapter e o conectamos à ListView.
 
 ```
