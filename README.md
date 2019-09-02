@@ -261,23 +261,40 @@ public class CustomListAdapter extends BaseAdapter {
 Vamos juntar todos eles e conectá-lo à Activity. O trecho de código a seguir descreve a classe  MainActivity.java, onde inicializamos o Adapter e o conectamos à ListView.
 
 ```
+
+
+        
 . . .
-            Cursor cursor = bancoDados.rawQuery("SELECT id,comment,rating FROM comment", null);
-            ArrayList<Comment> commentsArray = new ArrayList<Comment>();
-            CustomListAdapter customListAdapter = new CustomListAdapter(this, commentsArray);
-            if(cursor.moveToFirst()) {
-                do {
-                    Comment comment = new Comment();
-                    comment.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                    comment.setComment(cursor.getString(cursor.getColumnIndex("comment")));
-                    comment.setRating(cursor.getInt(cursor.getColumnIndex("rating")));
-                    commentsArray.add(comment);
-                } while (cursor.moveToNext());
-            }
-            listView.setAdapter(customListAdapter);
+Cursor cursor = bancoDados.rawQuery("SELECT id,comment,rating FROM comment", null);
+ArrayList<Comment> commentsArray = new ArrayList<Comment>();
+CustomListAdapter customListAdapter = new CustomListAdapter(this, commentsArray);
+if(cursor.moveToFirst()) {
+    do {
+        Comment comment = new Comment();
+        comment.setId(cursor.getInt(cursor.getColumnIndex("id")));
+        comment.setComment(cursor.getString(cursor.getColumnIndex("comment")));
+        comment.setRating(cursor.getInt(cursor.getColumnIndex("rating")));
+        commentsArray.add(comment);
+    } while (cursor.moveToNext());
+}
+listView.setAdapter(customListAdapter);
 . . . 
 ```
 
+Ainda na classe MainActivity, podemos implementar o método OnItemClick do ListView, para obter uma instância do modelo de dado do item clicado, conforme abaixo:
+
+```
+. . . 
+listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+  @Override
+  public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+      Object o = listView.getItemAtPosition(position);
+      Comment comment = (Comment) o;
+      Toast.makeText(MainActivity.this, "Nota: " + comment.getRating().toString() + "; Comentário: " + comment.getComment(), Toast.LENGTH_LONG).show();
+  }
+});
+. . . 
+```
 
 
 # License
