@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -40,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         listView = (ListView) findViewById(R.id.listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                Object o = listView.getItemAtPosition(position);
+                Comment comment = (Comment) o;
+                Toast.makeText(MainActivity.this, "Nota: " + comment.getRating().toString() + "; Comentário: " + comment.getComment(), Toast.LENGTH_LONG).show();
+            }
+        });
 
 
         criarBancoDados();
