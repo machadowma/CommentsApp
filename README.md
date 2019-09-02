@@ -25,7 +25,7 @@ As etapas a seguir são usadas para implementar a ListView personalizada:
 4. Será necessário criar uma classe de adaptador personalizada estendendo a classe BaseAdapter.
 5. Por fim, vamos instanciar o adaptador personalizado e definer o ListView chamando o método setAdapter ().
 
-## 1 - Declarando o modelo de dados
+## 1. Declarando o modelo de dados
 O objeto Comment representará cada linha da lista. Declare a classe Comment.java e adicione os seguintes trechos de código.
 
 ```
